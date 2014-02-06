@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main()
+{
+  char kitu[2]; kitu[1]=0;
+  char *xau, *xautemp;
+  xau=(char*)malloc(sizeof(char));
+  xau[0]=0;
+  char i;
+  printf("Hay nhap vao xau\n");
+  do
+    {
+      kitu[0]=getchar();
+      printf("Da doc ki tu %c ma %d\n",kitu[0],kitu[0]);
+      if(kitu[0] == '\n')
+	{
+	  printf("Ket thuc nhap.\n");
+	  break;
+	}
+      if(xau[0] == 0)
+	{
+	  printf("Xau bat dau khoi tao.\n");
+	  xau=(char*)malloc(sizeof(char)+1);
+	  xau[0]=kitu[0];
+	  xau[1]=0;
+	  continue;
+	}
+      printf("Waring 0: xau: %s kitu: %c\n",xau,kitu[0]);
+      if(xau[0] != 0)
+	{
+	  xautemp=(char*)malloc(sizeof(char)*strlen(xau)+1);
+	  xautemp[strlen(xau)]=0;
+	  printf("Waring1: xautemp:%s\nWaring1: xau: %s\n",xautemp, xau);
+	  strcpy(xautemp,xau);
+	  strcat(xautemp,kitu);
+	  printf("Waring2: xautemp:%s\nWaring2: xau: %s\n",xautemp, xau);
+	  free(xau);
+	  xau=xautemp;
+	  printf("Hoan tat viec noi ki tu.\n");
+	  printf("Xau hien tai la: %s\n",xau);
+	}
+    }while(kitu[0] != '\n');
+  printf("khao sat 3: %c|%d \n2: %c|%d \n1: %c|%d\n", xau[strlen(xau)-1], xau[strlen(xau)-1], xau[strlen(xau)-2],xau[strlen(xau)-2], xau[strlen(xau)-3],xau[strlen(xau)-3]);
+  puts(xau);
+
+  return 0;
+}
